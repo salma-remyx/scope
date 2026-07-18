@@ -1,0 +1,16 @@
+schema_version: 1
+fork: salma-remyx/scope
+observed_landing_zones:
+- path: src/scope/core/pipelines/surface_normals/
+  shape_tags:
+  - unclassified
+  confirmed_by:
+  - arxiv: 2404.15506v4
+    mode: ''
+    call_site_specifics: ''
+    branch: metric3dv2-a-versatile-monocular-geometric-foundation-model-
+    timestamp: '2026-07-18T23:19:42Z'
+  last_observed: '2026-07-18T23:19:42Z'
+rejected_shapes: []
+coordination_signals: []
+last_updated: '2026-07-18T23:19:42Z'
