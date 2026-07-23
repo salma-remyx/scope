@@ -6,9 +6,9 @@ from ..base_schema import BasePipelineConfig, ModeDefaults
 class SurfaceNormalsConfig(BasePipelineConfig):
     """Configuration for the Surface Normals pipeline.
 
-    Estimates per-pixel surface normals (and a canonical-camera-space depth
-    map) from a monocular depth input, applying Metric3Dv2's canonical
-    camera space transformation. Compose after ``video-depth-anything``:
+    Estimates per-pixel surface normals (and a target-camera metric depth
+    map) from a monocular depth prediction, applying Metric3Dv2's canonical
+    camera space un-alignment. Compose after ``video-depth-anything``:
     feed its depth output into this node's ``video`` input.
     """
 
@@ -29,7 +29,11 @@ class SurfaceNormalsConfig(BasePipelineConfig):
     focal_length: float = Field(
         default=1000.0,
         ge=1.0,
-        description="Source camera focal length in pixels used for depth back-projection",
+        description=(
+            "Target camera focal length in pixels; the canonical-space depth "
+            "input is un-aligned by focal_length / canonical_focal before "
+            "normal extraction"
+        ),
     )
     canonical_focal: float = Field(
         default=1000.0,
