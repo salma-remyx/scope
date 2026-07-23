@@ -147,6 +147,11 @@ def _register_pipelines():
             "VideoDepthAnythingPipeline",
         ),
         (
+            "surface_normals",
+            ".surface_normals.pipeline",
+            "SurfaceNormalsPipeline",
+        ),
+        (
             "controller-viz",
             ".controller_viz.pipeline",
             "ControllerVisualizerPipeline",

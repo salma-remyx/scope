@@ -83,3 +83,9 @@ The alpha version of this project is licensed under [CC BY-NC-SA 4.0](./LICENSE)
 You may use, modify, and share the code for non-commercial purposes only, provided that proper attribution is given.
 
 We will consider re-licensing future versions under a more permissive license if/when non-commercial dependencies are refactored or replaced.
+
+## Surface Normals
+
+The composable pipeline architecture also ships a `surface-normals` node that turns a monocular depth map (e.g. the output of `video-depth-anything`) into a per-pixel surface-normal preview, using Metric3Dv2-inspired canonical camera space geometry (Yin et al., arXiv [2404.15506](https://arxiv.org/abs/2404.15506)). It is model-free, so it registers and runs without a GPU — compose it after any depth node for normal-map output.
+
+The node follows Metric3Dv2's canonical camera data flow: the incoming depth prediction is treated as living in the canonical camera space (canonical focal 1000 px, principal point at half the maximum image dimension) and is un-aligned to the target camera's metric space — scaled by `focal_length / canonical_focal` — before normals are extracted, so surfaces render correctly for out-of-domain cameras. Normals face the camera, and the preview uses the conventional normal-map encoding (blue faces the viewer).
