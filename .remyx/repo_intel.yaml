@@ -11,6 +11,12 @@ observed_landing_zones:
     branch: metric3dv2-a-versatile-monocular-geometric-foundation-model-
     timestamp: '2026-07-18T23:19:42Z'
   last_observed: '2026-07-18T23:19:42Z'
-rejected_shapes: []
+rejected_shapes:
+- shape_tag: null
+  reason_code: null
+  reason_summary: ''
+  observed:
+  - arxiv: 2406.17256v2
+    timestamp: '2026-07-26T13:38:04Z'
 coordination_signals: []
-last_updated: '2026-07-18T23:19:42Z'
+last_updated: '2026-07-26T13:38:04Z'
