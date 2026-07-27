@@ -11,6 +11,16 @@ observed_landing_zones:
     branch: metric3dv2-a-versatile-monocular-geometric-foundation-model-
     timestamp: '2026-07-18T23:19:42Z'
   last_observed: '2026-07-18T23:19:42Z'
+- path: src/scope/core/pipelines/pervfi/
+  shape_tags:
+  - unclassified
+  confirmed_by:
+  - arxiv: 2404.06692v1
+    mode: ''
+    call_site_specifics: ''
+    branch: perception-oriented-video-frame-interpolation-via-asymmetric
+    timestamp: '2026-07-27T06:35:57Z'
+  last_observed: '2026-07-27T06:35:57Z'
 rejected_shapes:
 - shape_tag: null
   reason_code: null
@@ -19,4 +29,4 @@ rejected_shapes:
   - arxiv: 2406.17256v2
     timestamp: '2026-07-26T13:38:04Z'
 coordination_signals: []
-last_updated: '2026-07-26T13:38:04Z'
+last_updated: '2026-07-27T06:35:57Z'
