@@ -40,6 +40,10 @@ def __getattr__(name):
         from .rife.pipeline import RIFEPipeline
 
         return RIFEPipeline
+    elif name == "PerVFIPipeline":
+        from .pervfi.pipeline import PerVFIPipeline
+
+        return PerVFIPipeline
     elif name == "ScribblePipeline":
         from .scribble.pipeline import ScribblePipeline
 
@@ -89,6 +93,10 @@ def __getattr__(name):
         from .rife.schema import RIFEConfig
 
         return RIFEConfig
+    elif name == "PerVFIConfig":
+        from .pervfi.schema import PerVFIConfig
+
+        return PerVFIConfig
     elif name == "ScribbleConfig":
         from .scribble.schema import ScribbleConfig
 
@@ -111,6 +119,7 @@ __all__ = [
     "VideoDepthAnythingPipeline",
     "ControllerVisualizerPipeline",
     "RIFEPipeline",
+    "PerVFIPipeline",
     "ScribblePipeline",
     "GrayPipeline",
     "OpticalFlowPipeline",
@@ -124,6 +133,7 @@ __all__ = [
     "MemFlowConfig",
     "VideoDepthAnythingConfig",
     "RIFEConfig",
+    "PerVFIConfig",
     "ScribbleConfig",
     "GrayConfig",
 ]
