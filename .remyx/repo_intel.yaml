@@ -21,6 +21,18 @@ observed_landing_zones:
     branch: perception-oriented-video-frame-interpolation-via-asymmetric
     timestamp: '2026-07-27T06:35:57Z'
   last_observed: '2026-07-27T06:35:57Z'
+- path: src/scope/core/pipelines/rife/
+  shape_tags:
+  - registry-add
+  confirmed_by:
+  - arxiv: 2407.02315v2
+    mode: Mode 2 (adapted port)
+    call_site_specifics: "src/scope/core/pipelines/rife/pipeline.py:RIFEPipeline.__init__\
+      \ / __call__ \u2014 the registered `rife` pipeline node (reachable via PipelineManager/NodeRegistry\
+      \ and the server). The SSM engine is selected"
+    branch: vfimamba-video-frame-interpolation-with-state-space-models
+    timestamp: '2026-07-28T18:35:08Z'
+  last_observed: '2026-07-28T18:35:08Z'
 rejected_shapes:
 - shape_tag: null
   reason_code: null
@@ -29,4 +41,4 @@ rejected_shapes:
   - arxiv: 2406.17256v2
     timestamp: '2026-07-28T01:21:38Z'
 coordination_signals: []
-last_updated: '2026-07-28T01:21:38Z'
+last_updated: '2026-07-28T18:35:08Z'
