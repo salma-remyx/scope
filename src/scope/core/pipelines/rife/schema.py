@@ -1,5 +1,14 @@
+from typing import Literal
+
+from pydantic import Field
+
 from ..artifacts import HuggingfaceRepoArtifact
-from ..base_schema import BasePipelineConfig, ModeDefaults, UsageType
+from ..base_schema import (
+    BasePipelineConfig,
+    ModeDefaults,
+    UsageType,
+    ui_field_config,
+)
 
 
 class RIFEConfig(BasePipelineConfig):
@@ -31,3 +40,18 @@ class RIFEConfig(BasePipelineConfig):
     usage = [UsageType.POSTPROCESSOR]
 
     modes = {"video": ModeDefaults(default=True)}
+
+    # Inter-frame modeling engine. "rife" is the production RIFE HDv3 path;
+    # "ssm" swaps in a VFIMamba-inspired bidirectional selective state-space
+    # model (no external weights or GPU required). Changing this is a load
+    # param: it switches the interpolator, so the stream must be reloaded.
+    interpolation_engine: Literal["rife", "ssm"] = Field(
+        default="rife",
+        description=(
+            "Inter-frame modeling engine: 'rife' (RIFE HDv3, default) or 'ssm' "
+            "(VFIMamba-inspired bidirectional selective state-space model)."
+        ),
+        json_schema_extra=ui_field_config(
+            is_load_param=True, label="Interpolation engine"
+        ),
+    )

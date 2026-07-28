@@ -49,10 +49,24 @@ class RIFEPipeline(Pipeline):
         )
         self.dtype = dtype
 
-        # Initialize RIFE interpolator
-        logger.info("Loading RIFE HDv3 model...")
-        self.rife_interpolator = RIFEInterpolator(enabled=True, device=self.device)
-        logger.info("RIFE HDv3 model loaded successfully")
+        # Select the inter-frame modeling engine. "rife" (default) keeps the
+        # in-production RIFE HDv3 interpolator; "ssm" swaps in a VFIMamba-style
+        # bidirectional selective state-space model (no weights/GPU required).
+        self.interpolation_engine = (
+            getattr(config, "interpolation_engine", None) or "rife"
+        )
+        if self.interpolation_engine == "ssm":
+            from .modules.ssm_interpolation import SSMFrameInterpolator
+
+            logger.info("Using SSM (VFIMamba-inspired) inter-frame engine")
+            self.interpolator = SSMFrameInterpolator(enabled=True, device=self.device)
+        else:
+            # Initialize RIFE interpolator
+            logger.info("Loading RIFE HDv3 model...")
+            self.interpolator = RIFEInterpolator(enabled=True, device=self.device)
+            logger.info("RIFE HDv3 model loaded successfully")
+        # Backward-compatible alias for callers that referenced the RIFE handle.
+        self.rife_interpolator = self.interpolator
 
     def prepare(self, **kwargs) -> Requirements:
         return Requirements(input_size=12)
@@ -80,9 +94,9 @@ class RIFEPipeline(Pipeline):
         # Convert to [0, 255] uint8 for RIFE interpolation
         input_uint8 = (input_thwc * 255.0).clamp(0, 255).to(torch.uint8)
 
-        # Apply RIFE interpolation (expects THWC [0, 255] uint8, returns THWC [0, 255] uint8)
+        # Apply interpolation (expects THWC [0, 255] uint8, returns THWC [0, 255] uint8)
         # This doubles the frame rate: T frames -> 2*T-1 frames
-        interpolated = self.rife_interpolator.interpolate(input_uint8)
+        interpolated = self.interpolator.interpolate(input_uint8)
 
         # Convert back to [0, 1] float range
         # RIFE returns THWC [0, 255] uint8, convert to THWC [0, 1] float
