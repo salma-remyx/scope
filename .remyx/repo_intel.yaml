@@ -33,6 +33,18 @@ observed_landing_zones:
     branch: vfimamba-video-frame-interpolation-with-state-space-models
     timestamp: '2026-07-28T18:35:08Z'
   last_observed: '2026-07-28T18:35:08Z'
+- path: src/scope/core/pipelines/rife/modules/
+  shape_tags:
+  - registry-add
+  confirmed_by:
+  - arxiv: 2406.17256v2
+    mode: Mode 3 (inspired experiment)
+    call_site_specifics: RIFEPipeline.__call__ (src/scope/core/pipelines/rife/pipeline.py)
+      -> RIFEInterpolator.interpolate() (src/scope/core/pipelines/rife/modules/interpolation.py);
+      RIFE is auto-registered via _register_pipe
+    branch: disentangled-motion-modeling-for-video-frame-interpolation
+    timestamp: '2026-07-30T18:23:48Z'
+  last_observed: '2026-07-30T18:23:48Z'
 rejected_shapes:
 - shape_tag: null
   reason_code: null
@@ -41,4 +53,4 @@ rejected_shapes:
   - arxiv: 2406.17256v2
     timestamp: '2026-07-30T01:21:46Z'
 coordination_signals: []
-last_updated: '2026-07-30T01:21:46Z'
+last_updated: '2026-07-30T18:23:48Z'
