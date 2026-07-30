@@ -88,5 +88,10 @@ class RIFEPipeline(Pipeline):
         # RIFE returns THWC [0, 255] uint8, convert to THWC [0, 1] float
         interpolated_float = interpolated.float() / 255.0
 
-        # Return THWC [0, 1] float format (same as postprocess_chunk output)
-        return {"video": interpolated_float}
+        # Return THWC [0, 1] float format (same as postprocess_chunk output).
+        # "motion_residual" carries the per-interpolated-frame disentangled-motion
+        # confidence (MoMo-inspired); only "video" is consumed by downstream sinks.
+        return {
+            "video": interpolated_float,
+            "motion_residual": self.rife_interpolator.last_motion_residual,
+        }

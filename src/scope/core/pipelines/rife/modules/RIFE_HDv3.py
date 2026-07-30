@@ -74,6 +74,19 @@ class Model(nn.Module):
         flow, mask, merged = self.flownet(imgs, timestep=timestep, scale_list=scale_list)
         return merged[3]
 
+    def inference_motion(self, img0, img1, timestep=0.5, scale=1.0):
+        """Like :meth:`inference`, but also returns the flow and blend mask.
+
+        Exposing the optical-flow and blend intermediates lets downstream code
+        apply the disentangled-motion decomposition from MoMo
+        (https://arxiv.org/abs/2406.17256) -- separating the flow-warped motion
+        component from the appearance residual the flow cannot explain.
+        """
+        imgs = torch.cat((img0, img1), 1)
+        scale_list = [8 / scale, 4 / scale, 2 / scale, 1 / scale]
+        flow, mask, merged = self.flownet(imgs, timestep=timestep, scale_list=scale_list)
+        return merged[3], flow[3], mask
+
     def update(self, imgs, gt, learning_rate=0, mul=1, training=True, flow_gt=None):
         for param_group in self.optimG.param_groups:
             param_group["lr"] = learning_rate

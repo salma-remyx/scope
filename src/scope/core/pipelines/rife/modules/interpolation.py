@@ -13,6 +13,8 @@ from pathlib import Path
 import torch
 import torch.nn.functional as F
 
+from .motion_residual import estimate_motion_residual_confidence
+
 logger = logging.getLogger(__name__)
 
 # Try to import RIFE model
@@ -63,6 +65,9 @@ class RIFEInterpolator:
         )
         self.model = None
         self.model_path = model_path
+        # Per-interpolated-frame motion-residual confidence from the last
+        # interpolate() call (MoMo-inspired disentangled-motion decomposition).
+        self.last_motion_residual: list[dict[str, float]] = []
 
         if enabled:
             if not RIFE_AVAILABLE:
@@ -194,6 +199,8 @@ class RIFEInterpolator:
         Raises:
             RuntimeError: If RIFE is enabled but model is not available or loaded
         """
+        # Reset the per-frame motion-residual confidence for this call.
+        self.last_motion_residual = []
         if not self.enabled:
             return frames
 
@@ -260,13 +267,30 @@ class RIFEInterpolator:
                 frames1_padded = frames_padded[:-1]  # [T-1, C, pH, pW]
                 frames2_padded = frames_padded[1:]  # [T-1, C, pH, pW]
 
-                # Batched inference - process all pairs at once
-                mid_frames_padded = self.model.inference(
-                    frames1_padded, frames2_padded, scale=1.0
-                )  # [T-1, C, pH, pW]
+                # Batched inference - process all pairs at once.
+                # inference_motion also returns the flow and blend mask RIFE
+                # used to warp the source frames, so the disentangled-motion
+                # residual (MoMo, arXiv:2406.17256) can be estimated without a
+                # second forward pass.
+                mid_frames_padded, flow_padded, mask_padded = (
+                    self.model.inference_motion(
+                        frames1_padded, frames2_padded, scale=1.0
+                    )
+                )  # mid: [T-1, C, pH, pW], flow: [T-1, 4, pH, pW], mask: [T-1, 1, pH, pW]
 
             # Remove padding from interpolated frames (stay on GPU)
             mid_frames = mid_frames_padded[:, :, :H, :W].float()  # [T-1, C, H, W]
+
+            # Estimate per-pair motion-residual confidence (MoMo-inspired):
+            # how much the flow-warped source views disagree, cropping the
+            # flow/mask back to the unpadded resolution. Parameter-free -- it
+            # reuses the flow/mask RIFE already computed.
+            self.last_motion_residual = estimate_motion_residual_confidence(
+                frames1_padded[:, :, :H, :W].float(),
+                frames2_padded[:, :, :H, :W].float(),
+                flow_padded[:, :, :H, :W].float(),
+                mask_padded[:, :, :H, :W].float(),
+            )
 
             # Get original frames without padding (stay on GPU)
             original_frames = frames_padded[:, :, :H, :W]  # [T, C, H, W]
