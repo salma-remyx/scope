@@ -45,6 +45,16 @@ observed_landing_zones:
     branch: disentangled-motion-modeling-for-video-frame-interpolation
     timestamp: '2026-07-30T18:23:48Z'
   last_observed: '2026-07-30T18:23:48Z'
+- path: src/scope/core/pipelines/time_adaptive_vfi/
+  shape_tags:
+  - unclassified
+  confirmed_by:
+  - arxiv: 2504.05402v2
+    mode: ''
+    call_site_specifics: ''
+    branch: time-adaptive-video-frame-interpolation-based-on-residual-di
+    timestamp: '2026-07-31T09:04:01Z'
+  last_observed: '2026-07-31T09:04:01Z'
 rejected_shapes:
 - shape_tag: null
   reason_code: null
@@ -53,4 +63,4 @@ rejected_shapes:
   - arxiv: 2406.17256v2
     timestamp: '2026-07-30T01:21:46Z'
 coordination_signals: []
-last_updated: '2026-07-30T18:23:48Z'
+last_updated: '2026-07-31T09:04:01Z'
