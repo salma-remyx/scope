@@ -152,6 +152,11 @@ def _register_pipelines():
             "ControllerVisualizerPipeline",
         ),
         ("rife", ".rife.pipeline", "RIFEPipeline"),
+        (
+            "time_adaptive_vfi",
+            ".time_adaptive_vfi.pipeline",
+            "TimeAdaptiveVFIPipeline",
+        ),
         ("scribble", ".scribble.pipeline", "ScribblePipeline"),
         ("gray", ".gray.pipeline", "GrayPipeline"),
         ("optical_flow", ".optical_flow.pipeline", "OpticalFlowPipeline"),
