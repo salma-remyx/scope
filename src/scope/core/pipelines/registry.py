@@ -155,6 +155,7 @@ def _register_pipelines():
         ("scribble", ".scribble.pipeline", "ScribblePipeline"),
         ("gray", ".gray.pipeline", "GrayPipeline"),
         ("optical_flow", ".optical_flow.pipeline", "OpticalFlowPipeline"),
+        ("video_watermark", ".video_watermark.pipeline", "VideoWatermarkPipeline"),
     ]
 
     # Try to import and register each pipeline

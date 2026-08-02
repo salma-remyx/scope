@@ -83,3 +83,7 @@ The alpha version of this project is licensed under [CC BY-NC-SA 4.0](./LICENSE)
 You may use, modify, and share the code for non-commercial purposes only, provided that proper attribution is given.
 
 We will consider re-licensing future versions under a more permissive license if/when non-commercial dependencies are refactored or replaced.
+
+## Video Watermarking
+
+The `video-watermark` pipeline node embeds an imperceptible, blind-extractable message into every frame for AI-content provenance — adapted from *Video Seal: Open and Efficient Video Watermarking*. It uses a parameter-free spread-spectrum embedder (no model download) and runs in realtime on CPU or GPU. Set the message, strength, and key in the node settings; recover the message later with `scope.core.pipelines.video_watermark.extract_watermark`.
