@@ -55,6 +55,16 @@ observed_landing_zones:
     branch: time-adaptive-video-frame-interpolation-based-on-residual-di
     timestamp: '2026-07-31T09:04:01Z'
   last_observed: '2026-07-31T09:04:01Z'
+- path: src/scope/core/pipelines/video_watermark/
+  shape_tags:
+  - unclassified
+  confirmed_by:
+  - arxiv: 2412.09492v1
+    mode: ''
+    call_site_specifics: ''
+    branch: video-seal-open-and-efficient-video-watermarking
+    timestamp: '2026-08-02T05:36:39Z'
+  last_observed: '2026-08-02T05:36:39Z'
 rejected_shapes:
 - shape_tag: null
   reason_code: null
@@ -65,4 +75,4 @@ rejected_shapes:
   - arxiv: 2405.12512v1
     timestamp: '2026-08-01T15:23:01Z'
 coordination_signals: []
-last_updated: '2026-08-01T15:23:01Z'
+last_updated: '2026-08-02T05:36:39Z'
