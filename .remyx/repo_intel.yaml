@@ -65,6 +65,16 @@ observed_landing_zones:
     branch: video-seal-open-and-efficient-video-watermarking
     timestamp: '2026-08-02T05:36:39Z'
   last_observed: '2026-08-02T05:36:39Z'
+- path: src/scope/core/pipelines/iris/
+  shape_tags:
+  - unclassified
+  confirmed_by:
+  - arxiv: 2603.16340v2
+    mode: ''
+    call_site_specifics: ''
+    branch: iris-bringing-real-world-priors-into-diffusion-model-for-mon
+    timestamp: '2026-08-03T10:51:10Z'
+  last_observed: '2026-08-03T10:51:10Z'
 rejected_shapes:
 - shape_tag: null
   reason_code: null
@@ -75,4 +85,4 @@ rejected_shapes:
   - arxiv: 2405.12512v1
     timestamp: '2026-08-01T15:23:01Z'
 coordination_signals: []
-last_updated: '2026-08-02T05:36:39Z'
+last_updated: '2026-08-03T10:51:10Z'
