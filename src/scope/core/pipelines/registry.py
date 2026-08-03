@@ -146,6 +146,7 @@ def _register_pipelines():
             ".video_depth_anything.pipeline",
             "VideoDepthAnythingPipeline",
         ),
+        ("iris", ".iris.pipeline", "IrisDepthPipeline"),
         (
             "controller-viz",
             ".controller_viz.pipeline",
