@@ -32,6 +32,10 @@ def __getattr__(name):
         from .video_depth_anything.pipeline import VideoDepthAnythingPipeline
 
         return VideoDepthAnythingPipeline
+    elif name == "MetricDepthPipeline":
+        from .metric_depth.pipeline import MetricDepthPipeline
+
+        return MetricDepthPipeline
     elif name == "ControllerVisualizerPipeline":
         from .controller_viz.pipeline import ControllerVisualizerPipeline
 
@@ -85,6 +89,10 @@ def __getattr__(name):
         from .video_depth_anything.schema import VideoDepthAnythingConfig
 
         return VideoDepthAnythingConfig
+    elif name == "MetricDepthConfig":
+        from .metric_depth.schema import MetricDepthConfig
+
+        return MetricDepthConfig
     elif name == "RIFEConfig":
         from .rife.schema import RIFEConfig
 
@@ -109,6 +117,7 @@ __all__ = [
     "PassthroughPipeline",
     "MemFlowPipeline",
     "VideoDepthAnythingPipeline",
+    "MetricDepthPipeline",
     "ControllerVisualizerPipeline",
     "RIFEPipeline",
     "ScribblePipeline",
@@ -123,6 +132,7 @@ __all__ = [
     "RewardForcingConfig",
     "MemFlowConfig",
     "VideoDepthAnythingConfig",
+    "MetricDepthConfig",
     "RIFEConfig",
     "ScribbleConfig",
     "GrayConfig",

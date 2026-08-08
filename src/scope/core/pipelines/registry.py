@@ -146,6 +146,7 @@ def _register_pipelines():
             ".video_depth_anything.pipeline",
             "VideoDepthAnythingPipeline",
         ),
+        ("metric_depth", ".metric_depth.pipeline", "MetricDepthPipeline"),
         (
             "controller-viz",
             ".controller_viz.pipeline",
