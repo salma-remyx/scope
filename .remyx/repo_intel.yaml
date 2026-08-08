@@ -75,6 +75,18 @@ observed_landing_zones:
     branch: iris-bringing-real-world-priors-into-diffusion-model-for-mon
     timestamp: '2026-08-03T10:51:10Z'
   last_observed: '2026-08-03T10:51:10Z'
+- path: src/scope/core/pipelines/metric_depth/
+  shape_tags:
+  - registry-add
+  confirmed_by:
+  - arxiv: 2403.18913v1
+    mode: Mode 3 (inspired experiment)
+    call_site_specifics: Auto-registered in scope.core.pipelines.registry._register_pipelines()
+      (registry.py:149) into PipelineRegistry, which scope.server.app imports for
+      side effects at boot (app.py:3725-3727); from there i
+    branch: unidepth-universal-monocular-metric-depth-estimation
+    timestamp: '2026-08-08T08:18:42Z'
+  last_observed: '2026-08-08T08:18:42Z'
 rejected_shapes:
 - shape_tag: null
   reason_code: null
@@ -87,4 +99,4 @@ rejected_shapes:
   - arxiv: 2607.14898v1
     timestamp: '2026-08-06T04:53:46Z'
 coordination_signals: []
-last_updated: '2026-08-06T04:53:46Z'
+last_updated: '2026-08-08T08:18:42Z'
