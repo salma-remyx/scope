@@ -1393,6 +1393,36 @@ class PipelineManager:
             logger.info("Gray pipeline initialized")
             return pipeline
 
+        elif pipeline_id == "gedepth":
+            from scope.core.pipelines import GEDepthPipeline
+            from scope.core.pipelines.gedepth.schema import GEDepthConfig
+
+            if stage_callback:
+                stage_callback("Initializing pipeline...")
+
+            # Build config from schema defaults, overridden by load_params.
+            params = load_params or {}
+            fields = GEDepthConfig.model_fields
+            config = OmegaConf.create(
+                {
+                    "camera_height": params.get(
+                        "camera_height", fields["camera_height"].default
+                    ),
+                    "pitch_deg": params.get("pitch_deg", fields["pitch_deg"].default),
+                    "vertical_fov_deg": params.get(
+                        "vertical_fov_deg", fields["vertical_fov_deg"].default
+                    ),
+                    "max_distance": params.get(
+                        "max_distance", fields["max_distance"].default
+                    ),
+                    "invert": params.get("invert", fields["invert"].default),
+                }
+            )
+
+            pipeline = GEDepthPipeline(config, device=get_device())
+            logger.info("GEDepth ground-embedding pipeline initialized")
+            return pipeline
+
         elif pipeline_id == "optical-flow":
             from scope.core.pipelines import OpticalFlowPipeline
             from scope.core.pipelines.optical_flow.schema import OpticalFlowConfig
