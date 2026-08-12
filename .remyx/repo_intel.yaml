@@ -87,6 +87,16 @@ observed_landing_zones:
     branch: unidepth-universal-monocular-metric-depth-estimation
     timestamp: '2026-08-08T08:18:42Z'
   last_observed: '2026-08-08T08:18:42Z'
+- path: src/scope/core/pipelines/gedepth/
+  shape_tags:
+  - unclassified
+  confirmed_by:
+  - arxiv: 2309.09975v1
+    mode: ''
+    call_site_specifics: ''
+    branch: gedepth-ground-embedding-for-monocular-depth-estimation
+    timestamp: '2026-08-12T01:44:14Z'
+  last_observed: '2026-08-12T01:44:14Z'
 rejected_shapes:
 - shape_tag: null
   reason_code: null
@@ -101,4 +111,4 @@ rejected_shapes:
   - arxiv: 2607.28144v1
     timestamp: '2026-08-11T06:25:04Z'
 coordination_signals: []
-last_updated: '2026-08-11T06:25:04Z'
+last_updated: '2026-08-12T01:44:14Z'
