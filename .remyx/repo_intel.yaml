@@ -97,6 +97,18 @@ observed_landing_zones:
     branch: gedepth-ground-embedding-for-monocular-depth-estimation
     timestamp: '2026-08-12T01:44:14Z'
   last_observed: '2026-08-12T01:44:14Z'
+- path: src/scope/core/pipelines/longlive/blocks/
+  shape_tags:
+  - registry-add
+  confirmed_by:
+  - arxiv: 2608.05976v1
+    mode: Mode 2 (adapted port)
+    call_site_specifics: 'LongLivePipeline.__call__ in src/scope/core/pipelines/longlive/pipeline.py
+      (line 250: self.blocks(self.components, self.state)), where self.blocks = LongLiveBlocks()
+      runs the ALL_BLOCKS chain from mod'
+    branch: diff-vf-training-free-high-quality-long-video-generation-via
+    timestamp: '2026-08-13T18:47:10Z'
+  last_observed: '2026-08-13T18:47:10Z'
 rejected_shapes:
 - shape_tag: null
   reason_code: null
@@ -113,4 +125,4 @@ rejected_shapes:
   - arxiv: 2502.14007v1
     timestamp: '2026-08-12T20:50:04Z'
 coordination_signals: []
-last_updated: '2026-08-12T20:50:04Z'
+last_updated: '2026-08-13T18:47:10Z'
