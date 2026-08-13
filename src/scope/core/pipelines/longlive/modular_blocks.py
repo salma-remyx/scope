@@ -17,6 +17,7 @@ from ..wan2_1.blocks import (
 )
 from ..wan2_1.vace.blocks import VaceEncodingBlock
 from .blocks import (
+    HybridNoiseInitBlock,
     PrepareRecacheFramesBlock,
     RecacheFramesBlock,
 )
@@ -39,6 +40,7 @@ ALL_BLOCKS = InsertableDict(
         ),
         ("auto_preprocess_video", AutoPreprocessVideoBlock),
         ("auto_prepare_latents", AutoPrepareLatentsBlock),
+        ("hybrid_noise_init", HybridNoiseInitBlock),
         ("recache_frames", RecacheFramesBlock),
         ("vace_encoding", VaceEncodingBlock),
         ("denoise", DenoiseBlock),
