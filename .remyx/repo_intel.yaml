@@ -109,6 +109,18 @@ observed_landing_zones:
     branch: diff-vf-training-free-high-quality-long-video-generation-via
     timestamp: '2026-08-13T18:47:10Z'
   last_observed: '2026-08-13T18:47:10Z'
+- path: src/scope/core/pipelines/wan2_1/modules/
+  shape_tags:
+  - unclassified
+  confirmed_by:
+  - arxiv: 2608.02504v1
+    mode: Mode 2 (adapted port)
+    call_site_specifics: "src/scope/core/pipelines/wan2_1/modules/attention.py:attention()\
+      \ \u2014 the shared dispatcher imported and called by the causal_model.py/model.py\
+      \ of the longlive, memflow, reward_forcing, streamdiffusionv2"
+    branch: token-radius-attention-for-efficient-video-generation
+    timestamp: '2026-08-14T16:04:48Z'
+  last_observed: '2026-08-14T16:04:48Z'
 rejected_shapes:
 - shape_tag: null
   reason_code: null
@@ -125,4 +137,4 @@ rejected_shapes:
   - arxiv: 2502.14007v1
     timestamp: '2026-08-12T20:50:04Z'
 coordination_signals: []
-last_updated: '2026-08-13T18:47:10Z'
+last_updated: '2026-08-14T16:04:48Z'
