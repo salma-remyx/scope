@@ -55,6 +55,8 @@ SAGEATTN_AVAILABLE = False
 if not is_hopper_gpu() and not is_b200_gpu():
     from .sage import SAGEATTN_AVAILABLE, sageattn_func
 
+from .token_radius import token_radius_attention
+
 import warnings
 
 __all__ = [
@@ -204,6 +206,12 @@ def attention(
     fa_version=None,
     # og_dtype=torch.bfloat16,
 ):
+    # Token Radius Attention: training-free query-adaptive sparsity.
+    # Returns None when disabled, letting the usual backends run untouched.
+    tra_out = token_radius_attention(q, k, v)
+    if tra_out is not None:
+        return tra_out
+
     if SAGEATTN_AVAILABLE:
         # print("Using sageattention")
         attn_mask = None

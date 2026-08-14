@@ -68,6 +68,10 @@ The easiest way to enable this feature is to follow the [HuggingFace Auth guide]
 
 Check out the [Environment Variables reference](https://docs.daydream.live/scope/reference/environment-variables).
 
+## Token Radius Attention
+
+Optional training-free attention sparsity for the Wan2.1-family diffusion backbones (LongLive, MemFlow, RewardForcing, Krea Realtime Video, StreamDiffusionV2). Each query's attention entropy is mapped to a per-token key budget, which becomes a temporally decayed key radius — queries attend to a query-centred neighbourhood instead of every key. Set `WAN_TOKEN_RADIUS=1` to opt in, and `WAN_TOKEN_RADIUS_MAX_DENSITY` (default `0.19`) to cap the retained key fraction. Sequences shorter than 512 keys fall back to the usual dense backend. Adapted from [Token Radius Attention for Efficient Video Generation](https://arxiv.org/abs/2608.02504v1).
+
 ## Contributing
 
 Check out the [contribution guide](./docs/contributing.md).
