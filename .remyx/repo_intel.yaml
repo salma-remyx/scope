@@ -111,7 +111,7 @@ observed_landing_zones:
   last_observed: '2026-08-13T18:47:10Z'
 - path: src/scope/core/pipelines/wan2_1/modules/
   shape_tags:
-  - unclassified
+  - registry-add
   confirmed_by:
   - arxiv: 2608.02504v1
     mode: Mode 2 (adapted port)
@@ -120,7 +120,14 @@ observed_landing_zones:
       \ of the longlive, memflow, reward_forcing, streamdiffusionv2"
     branch: token-radius-attention-for-efficient-video-generation
     timestamp: '2026-08-14T16:04:48Z'
-  last_observed: '2026-08-14T16:04:48Z'
+  - arxiv: 2608.12032v1
+    mode: Mode 2 (adapted port)
+    call_site_specifics: "attention() in src/scope/core/pipelines/wan2_1/modules/attention.py:207\
+      \ \u2014 the pre-existing dispatcher every wan2_1-based DiT pipeline routes\
+      \ self-attention through; memflow calls it at modules/causal_"
+    branch: losa-near-lossless-sparse-attention-for-training-free-video-
+    timestamp: '2026-08-22T05:59:56Z'
+  last_observed: '2026-08-22T05:59:56Z'
 rejected_shapes:
 - shape_tag: null
   reason_code: null
@@ -137,4 +144,4 @@ rejected_shapes:
   - arxiv: 2502.14007v1
     timestamp: '2026-08-12T20:50:04Z'
 coordination_signals: []
-last_updated: '2026-08-14T16:04:48Z'
+last_updated: '2026-08-22T05:59:56Z'
