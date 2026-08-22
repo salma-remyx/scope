@@ -204,6 +204,16 @@ def attention(
     fa_version=None,
     # og_dtype=torch.bfloat16,
 ):
+    if q_lens is None and k_lens is None:
+        # Block-sparse KV pruning is only valid for uniform packed sequences;
+        # varlen callers (text encoders) pass padded batches whose block
+        # boundaries do not line up across the batch.
+        from .block_sparse_attention import block_sparse_gather
+
+        pruned = block_sparse_gather(q, k, v)
+        if pruned is not None:
+            k, v = pruned
+
     if SAGEATTN_AVAILABLE:
         # print("Using sageattention")
         attn_mask = None

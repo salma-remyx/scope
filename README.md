@@ -36,6 +36,7 @@ Scope is a tool for running and customizing real-time, interactive generative AI
 - [NDI](https://docs.daydream.live/scope/guides/ndi) real-time video sharing across local networks
 - [Spout](https://docs.daydream.live/scope/guides/spout) (Windows only) and [Syphon](docs/syphon.md) (macOS only) real-time video sharing with local applications
 - Low latency async video processing pipelines
+- Optional block-sparse attention for autoregressive video diffusion models, which prunes key/value blocks to a fixed retained attention-mass budget instead of a fixed sparsity ratio (adapted from [LoSA](https://arxiv.org/abs/2608.12032)); off by default, enable with `ENABLE_BLOCK_SPARSE_ATTN=1`
 - Interactive UI with timeline editor, text prompting, model parameter controls and video/camera/text input modes
 
 ...and more to come!
